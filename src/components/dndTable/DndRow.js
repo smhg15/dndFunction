@@ -11,7 +11,7 @@ const style = {
   cursor: 'move',
   color: 'black',
 }
-export const DndRow = ({ id, text, index, moveRow,code, population, size}) => {
+export const DndRow = ({ id, name, index, moveRow,squadNumber, position, quality}) => {
   const ref = useRef(null)
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.ROW,
@@ -76,16 +76,16 @@ export const DndRow = ({ id, text, index, moveRow,code, population, size}) => {
                 {id}
                 </TableCell>
                 <TableCell>
-                {text}
+                {name}
                 </TableCell>
                 <TableCell>
-                {code}
+                {squadNumber}
                 </TableCell>
                 <TableCell>
-                {population}
+                {position}
                 </TableCell>
                 <TableCell>
-                {size}
+                {quality}
                 </TableCell>
             </TableRow>
   )
