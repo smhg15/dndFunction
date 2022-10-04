@@ -11,7 +11,8 @@ const style = {
   cursor: 'move',
   color: 'black',
 }
-export const DndRow = ({ id, name, index, moveRow,squadNumber, position, quality}) => {
+export const DndRow = ({index, moveRow, rowData, columns}) => {
+  const id= rowData.id
   const ref = useRef(null)
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.ROW,
@@ -72,24 +73,14 @@ export const DndRow = ({ id, name, index, moveRow,squadNumber, position, quality
   drag(drop(ref))
   return (
             <TableRow ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
-                <TableCell>
-                {id}
-                </TableCell>
-                <TableCell>
-                {name}
-                </TableCell>
-                <TableCell>
-                {squadNumber}
-                </TableCell>
-                <TableCell>
-                {position}
-                </TableCell>
-                <TableCell>
-                {quality}
-                </TableCell>
+              {columns&&columns.map((column)=>{
+                return(
+                  <TableCell key={column}>
+                    {rowData[column]}
+                  </TableCell>
+                )})}
             </TableRow>
-  )
-}
+  )}
 // import * as React from 'react';
 // import Paper from '@mui/material/Paper';
 // import Table from '@mui/material/Table';
